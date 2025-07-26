@@ -1,5 +1,5 @@
-import { StyleSheet, View, ActivityIndicator, FlatList } from 'react-native'
-import React, { useCallback, useMemo } from 'react'
+import { StyleSheet, View, ActivityIndicator, FlatList, RefreshControl } from 'react-native'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Header from '../base/components/headers/Header'
 import TrendingNews from '../features/trendingNews/components'
@@ -14,6 +14,8 @@ import Text from '../base/components/Text'
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets()
+  const [refreshing, setRefreshing] = useState(false)
+  
   const {
     data,
     isLoading,
@@ -21,6 +23,7 @@ const HomeScreen = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    refetch,
   } = useInfiniteNews({ pageSize: 20 })
 
   const flatData = useMemo(() => {
@@ -73,16 +76,15 @@ const HomeScreen = () => {
     paddingBottom: insets.bottom + Spacing.md,
   }), [insets.bottom])
 
-  if (error) {
-    return (
-      <ScreenContainer>
-        <Header />
-        <View style={styles.errorContainer}>
-          <Text>Error loading news</Text>
-        </View>
-      </ScreenContainer>
-    )
-  }
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true)
+    try {
+      await refetch()
+    } finally {
+      setRefreshing(false)
+    }
+  }, [refetch])
+
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']} style={styles.container}>
@@ -100,10 +102,22 @@ const HomeScreen = () => {
         windowSize={10}
         maxToRenderPerBatch={5}
         initialNumToRender={10}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[Colors.action]}
+            tintColor={Colors.action}
+          />
+        }
         ListEmptyComponent={isLoading ? (
           <View style={styles.loadingContainer}>
             <LoadingIndicator />
           </View>
+        ) : error ? (
+            <View style={styles.errorContainer}>
+              <Text>Error loading news</Text>
+            </View>
         ) : null}
       />
     </ScreenContainer>

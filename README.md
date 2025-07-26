@@ -1,6 +1,12 @@
 # Daily news
 
-Project using latest 
+Project using latest RN version (0.80) hermes / new architecture
+
+.env file is included since this is not some important thing. 
+
+I don't know how many request is left for today since I used a lot request and the day limit is 100 so maybe you have to change the api key to your own if you test it on july 26. 
+
+
 
 ## Step 1
 
