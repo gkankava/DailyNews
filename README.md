@@ -33,12 +33,12 @@ npx react-native-asset
 ## Step 2
 ```sh
 # for ios install bundler
-bundle install
+cd ios/ && bundle install
 ```
 
 ```sh
 # install pods
-bundle exec pod install
+bundle exec pod install && cd ..
 ```
 
 ## Step 3
