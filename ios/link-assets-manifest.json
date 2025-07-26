@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/PlayfairDisplay-Regular.ttf",
+      "sha1": "e24b800575cb38de6687eeb2cb33672fa5f6acee"
+    },
+    {
+      "path": "assets/fonts/ScopeOne-Regular.ttf",
+      "sha1": "306c812782df99595840e73250f89222c0323fbb"
+    }
+  ]
+}
