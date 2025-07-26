@@ -33,7 +33,7 @@ npx react-native-asset
 ## Step 2
 ```sh
 # for ios install pods
-cd ios/ && bundle exec pod install && cd ..
+npx pod install
 ```
 
 ## Step 3
