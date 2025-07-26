@@ -28,6 +28,7 @@ After cloning the repo and installing dependencies, run:
 
 ```sh
 npx react-native-asset
+```
 
 ## Step 2
 ```sh
