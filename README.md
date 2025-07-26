@@ -22,6 +22,13 @@ rbenv local 3.4.3
 yarn # install deps
 ```
 
+### Setup
+
+After cloning the repo and installing dependencies, run:
+
+```sh
+npx react-native-asset
+
 ## Step 2
 ```sh
 # for ios install pods
